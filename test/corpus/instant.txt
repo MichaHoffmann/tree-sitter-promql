@@ -1,0 +1,44 @@
+================================================================================
+instant vector - simple
+================================================================================
+
+http_requests_total
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)))
+
+================================================================================
+instant vector - some label matchers
+================================================================================
+
+http_requests_total{path="/", status_code!="200", foo=~".*", bar!~".*"}
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)
+    (label_selectors
+      (label_matcher
+        (label_name)
+        (label_value))
+      (label_matcher
+        (label_name)
+        (label_value))
+      (label_matcher
+        (label_name)
+        (label_value))
+      (label_matcher
+        (label_name)
+        (label_value)))))
+
+================================================================================
+instant vector - conflict with function name
+================================================================================
+
+rate[1m]
+
+----
