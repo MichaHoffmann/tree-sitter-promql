@@ -39,6 +39,15 @@ http_requests_total{path="/", status_code!="200", foo=~".*", bar!~".*"}
 instant vector - conflict with function name
 ================================================================================
 
-rate[1m]
+rate(rate[1m])
 
 ----
+
+(query
+  (function_call
+    (function_name)
+    (function_args
+      (range_vector_selector
+        (metric_name)
+        (range_selection)))))
+

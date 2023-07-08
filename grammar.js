@@ -15,6 +15,7 @@ module.exports = grammar({
 
     // literals
     _literal_expression: ($) => choice($.float_literal, $.string_literal),
+
     float_literal: (_) =>
       /[-+]?([0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?|0[xX][0-9a-fA-F]+|[nN][aA][nN]|[iI][nN][fF])/,
     string_literal: ($) => $._quoted_string,
@@ -30,13 +31,7 @@ module.exports = grammar({
 
     _series_matcher: ($) => seq($.metric_name, optional($.label_selectors)),
 
-    label_selectors: ($) =>
-      seq(
-        "{",
-        optional(seq($.label_matcher, repeat(seq(",", $.label_matcher)))),
-        "}"
-      ),
-
+    label_selectors: ($) => seq("{", commaSep($.label_matcher), "}"),
     label_matcher: ($) =>
       seq($.label_name, choice("=", "!=", "=~", "!~"), $.label_value),
 
@@ -53,13 +48,9 @@ module.exports = grammar({
     // functions
     _function_expression: ($) => $.function_call,
 
-    function_call: ($) =>
-      seq($.function_name, "(", optional($.function_args), ")"),
-
-    // TODO: more functions
+    function_call: ($) => seq($.function_name, $.function_args),
     function_name: (_) => choice("rate", "label_join", "histogram_quantile"),
-    function_args: ($) =>
-      seq($._query_expression, repeat(seq(",", $._query_expression))),
+    function_args: ($) => seq("(", commaSep($._query_expression), ")"),
 
     // misc helpers
     _quoted_string: ($) =>
@@ -80,3 +71,11 @@ module.exports = grammar({
       ),
   },
 });
+
+function commaSep(rule) {
+  return optional(commaSep1(rule));
+}
+
+function commaSep1(rule) {
+  return seq(rule, repeat(seq(",", rule)));
+}
