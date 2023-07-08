@@ -70,3 +70,37 @@ histogram_quantile(0.9, rate(http_request_duration_seconds_bucket[10m]))
           (range_vector_selector
             (metric_name)
             (range_selection)))))))
+
+================================================================================
+function - range vector with same name as a function
+================================================================================
+
+rate(rate[1m])
+
+--------------------------------------------------------------------------------
+
+(query
+  (function_call
+    (function_name)
+    (function_args
+      (range_vector_selector
+        (metric_name)
+        (range_selection)))))
+
+================================================================================
+function - no function just brackets
+================================================================================
+
+( a - b ) / c
+
+--------------------------------------------------------------------------------
+
+(query
+  (binary_expression
+    (binary_expression
+      (instant_vector_selector
+        (metric_name))
+      (instant_vector_selector
+        (metric_name)))
+    (instant_vector_selector
+      (metric_name))))

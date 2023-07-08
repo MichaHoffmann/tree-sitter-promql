@@ -36,18 +36,58 @@ http_requests_total{path="/", status_code!="200", foo=~".*", bar!~".*"}
         (label_value)))))
 
 ================================================================================
-instant vector - conflict with function name
+instant vector - @ modifier start
 ================================================================================
 
-rate(rate[1m])
+http_requests_total @ start()
 
-----
+--------------------------------------------------------------------------------
 
 (query
-  (function_call
-    (function_name)
-    (function_args
-      (range_vector_selector
-        (metric_name)
-        (range_selection)))))
+  (instant_vector_selector
+    (metric_name)
+    (modifier
+      (at))))
 
+================================================================================
+instant vector - @ modifier end
+================================================================================
+
+http_requests_total @ start()
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)
+    (modifier
+      (at))))
+
+================================================================================
+instant vector - offset
+================================================================================
+
+http_requests_total offset -1w
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)
+    (modifier
+      (offset))))
+
+================================================================================
+instant vector - offset and @
+================================================================================
+
+http_requests_total @ end() offset -1w
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)
+    (modifier
+      (at)
+      (offset))))

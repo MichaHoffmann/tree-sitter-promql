@@ -1,12 +1,28 @@
 [
   {
-    "type": "function_args",
+    "type": "aggregation_expression",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "aggregation_expression",
+          "named": true
+        },
+        {
+          "type": "aggregation_grouping",
+          "named": true
+        },
+        {
+          "type": "aggregation_operator",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
         {
           "type": "float_literal",
           "named": true
@@ -25,6 +41,140 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "subquery",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "aggregation_grouping",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "label_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "aggregation_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "at",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "binary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "aggregation_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "binary_grouping",
+          "named": true
+        },
+        {
+          "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "instant_vector_selector",
+          "named": true
+        },
+        {
+          "type": "range_vector_selector",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "subquery",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_grouping",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "label_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "aggregation_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "instant_vector_selector",
+          "named": true
+        },
+        {
+          "type": "range_vector_selector",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "subquery",
           "named": true
         }
       ]
@@ -69,6 +219,10 @@
         {
           "type": "metric_name",
           "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
         }
       ]
     }
@@ -93,6 +247,11 @@
     }
   },
   {
+    "type": "label_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "label_selectors",
     "named": true,
     "fields": {},
@@ -113,6 +272,35 @@
     "fields": {}
   },
   {
+    "type": "metric_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "at",
+          "named": true
+        },
+        {
+          "type": "offset",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "offset",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "query",
     "named": true,
     "fields": {},
@@ -120,6 +308,14 @@
       "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "aggregation_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
         {
           "type": "float_literal",
           "named": true
@@ -138,6 +334,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "subquery",
           "named": true
         }
       ]
@@ -165,6 +365,10 @@
           "named": true
         },
         {
+          "type": "modifier",
+          "named": true
+        },
+        {
           "type": "range_selection",
           "named": true
         }
@@ -177,11 +381,71 @@
     "fields": {}
   },
   {
+    "type": "subquery",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregation_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "float_literal",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "instant_vector_selector",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "range_vector_selector",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "subquery",
+          "named": true
+        },
+        {
+          "type": "subquery_range_selection",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subquery_range_selection",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "!=",
     "named": false
   },
   {
     "type": "!~",
+    "named": false
+  },
+  {
+    "type": "%",
     "named": false
   },
   {
@@ -193,7 +457,35 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
     "named": false
   },
   {
@@ -201,7 +493,23 @@
     "named": false
   },
   {
+    "type": "==",
+    "named": false
+  },
+  {
     "type": "=~",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": "@",
     "named": false
   },
   {
@@ -213,11 +521,51 @@
     "named": false
   },
   {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "and",
+    "named": false
+  },
+  {
+    "type": "atan2",
+    "named": false
+  },
+  {
+    "type": "avg",
+    "named": false
+  },
+  {
+    "type": "bool",
+    "named": false
+  },
+  {
+    "type": "bottomk",
+    "named": false
+  },
+  {
+    "type": "by",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true
   },
   {
+    "type": "count",
+    "named": false
+  },
+  {
+    "type": "count_values",
+    "named": false
+  },
+  {
     "type": "d",
+    "named": false
+  },
+  {
+    "type": "end()",
     "named": false
   },
   {
@@ -225,35 +573,55 @@
     "named": true
   },
   {
+    "type": "group",
+    "named": false
+  },
+  {
+    "type": "group_left",
+    "named": false
+  },
+  {
+    "type": "group_right",
+    "named": false
+  },
+  {
     "type": "h",
     "named": false
   },
   {
-    "type": "histogram_quantile",
+    "type": "ignoring",
     "named": false
-  },
-  {
-    "type": "label_join",
-    "named": false
-  },
-  {
-    "type": "label_name",
-    "named": true
   },
   {
     "type": "m",
     "named": false
   },
   {
-    "type": "metric_name",
-    "named": true
+    "type": "max",
+    "named": false
+  },
+  {
+    "type": "min",
+    "named": false
   },
   {
     "type": "ms",
     "named": false
   },
   {
-    "type": "rate",
+    "type": "offset",
+    "named": false
+  },
+  {
+    "type": "on",
+    "named": false
+  },
+  {
+    "type": "or",
+    "named": false
+  },
+  {
+    "type": "quantile",
     "named": false
   },
   {
@@ -261,7 +629,35 @@
     "named": false
   },
   {
+    "type": "start()",
+    "named": false
+  },
+  {
+    "type": "stdev",
+    "named": false
+  },
+  {
+    "type": "stdvar",
+    "named": false
+  },
+  {
+    "type": "sum",
+    "named": false
+  },
+  {
+    "type": "topk",
+    "named": false
+  },
+  {
+    "type": "unless",
+    "named": false
+  },
+  {
     "type": "w",
+    "named": false
+  },
+  {
+    "type": "without",
     "named": false
   },
   {

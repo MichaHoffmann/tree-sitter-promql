@@ -1,0 +1,97 @@
+================================================================================
+aggregation - sum by
+================================================================================
+
+sum by (label) (http_requests_total)
+
+--------------------------------------------------------------------------------
+
+(query
+  (aggregation_expression
+    (aggregation_operator)
+    (aggregation_grouping
+      (label_name))
+    (instant_vector_selector
+      (metric_name))))
+
+================================================================================
+aggregation - sum without
+================================================================================
+
+sum without (label) (http_requests_total)
+
+--------------------------------------------------------------------------------
+
+(query
+  (aggregation_expression
+    (aggregation_operator)
+    (aggregation_grouping
+      (label_name))
+    (instant_vector_selector
+      (metric_name))))
+
+================================================================================
+aggregation - sum empty grouping
+================================================================================
+
+sum without () (http_requests_total)
+
+--------------------------------------------------------------------------------
+
+(query
+  (aggregation_expression
+    (aggregation_operator)
+    (aggregation_grouping)
+    (instant_vector_selector
+      (metric_name))))
+
+================================================================================
+aggregation - nested count
+================================================================================
+
+count(count by (label) (http_requests_total))
+
+--------------------------------------------------------------------------------
+
+(query
+  (aggregation_expression
+    (aggregation_operator)
+    (aggregation_expression
+      (aggregation_operator)
+      (aggregation_grouping
+        (label_name))
+      (instant_vector_selector
+        (metric_name)))))
+
+================================================================================
+aggregation - sum by trailing grouping
+================================================================================
+
+sum(http_requests_total) by (label)
+
+--------------------------------------------------------------------------------
+
+(query
+  (aggregation_expression
+    (aggregation_operator)
+    (instant_vector_selector
+      (metric_name))
+    (aggregation_grouping
+      (label_name))))
+
+================================================================================
+aggregation - topk
+================================================================================
+
+topk(10, http_requests_total) by (label)
+
+--------------------------------------------------------------------------------
+
+(query
+  (aggregation_expression
+    (aggregation_operator)
+    (float_literal)
+    (instant_vector_selector
+      (metric_name))
+    (aggregation_grouping
+      (label_name))))

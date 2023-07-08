@@ -1,0 +1,32 @@
+================================================================================
+binary - division with grouping
+================================================================================
+
+foo / ignoring(label1) group_left(label2) bar
+
+--------------------------------------------------------------------------------
+
+(query
+  (binary_expression
+    (instant_vector_selector
+      (metric_name))
+    (binary_grouping
+      (label_name)
+      (label_name))
+    (instant_vector_selector
+      (metric_name))))
+
+================================================================================
+binary - ungrouped subtraction
+================================================================================
+
+foo - bar
+
+--------------------------------------------------------------------------------
+
+(query
+  (binary_expression
+    (instant_vector_selector
+      (metric_name))
+    (instant_vector_selector
+      (metric_name))))
