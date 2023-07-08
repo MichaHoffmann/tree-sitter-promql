@@ -30,3 +30,34 @@ foo - bar
       (metric_name))
     (instant_vector_selector
       (metric_name))))
+
+================================================================================
+binary - error rate
+================================================================================
+
+(sum(rate(http_requests_total{status_code=~"5.*"}[5m]))/sum(rate(http_requests_total[5m])))
+
+--------------------------------------------------------------------------------
+
+(query
+  (binary_expression
+    (aggregation_expression
+      (aggregation_operator)
+      (function_call
+        (function_name)
+        (function_args
+          (range_vector_selector
+            (metric_name)
+            (label_selectors
+              (label_matcher
+                (label_name)
+                (label_value)))
+            (range_selection)))))
+    (aggregation_expression
+      (aggregation_operator)
+      (function_call
+        (function_name)
+        (function_args
+          (range_vector_selector
+            (metric_name)
+            (range_selection)))))))
