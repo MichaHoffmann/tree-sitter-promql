@@ -82,7 +82,7 @@ module.exports = grammar({
         "min",
         "avg",
         "group",
-        "stdev",
+        "stddev",
         "stdvar",
         "count",
         "count_values",
