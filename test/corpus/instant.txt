@@ -91,3 +91,51 @@ http_requests_total @ end() offset -1w
     (modifier
       (at)
       (offset))))
+
+================================================================================
+instant vector - regex label matcher double quotes
+================================================================================
+
+http_requests_total{foo=~"(foo|bar)z.*"}
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)
+    (label_selectors
+      (label_matcher
+        (label_name)
+        (label_value)))))
+
+================================================================================
+instant vector - regex label matcher double quotes with escaped quote
+================================================================================
+
+http_requests_total{foo=~"\".*\""}
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)
+    (label_selectors
+      (label_matcher
+        (label_name)
+        (label_value)))))
+
+================================================================================
+instant vector - regex label matcher single quotes
+================================================================================
+
+http_requests_total{foo=~'(foo|bar)z.*'}
+
+--------------------------------------------------------------------------------
+
+(query
+  (instant_vector_selector
+    (metric_name)
+    (label_selectors
+      (label_matcher
+        (label_name)
+        (label_value)))))

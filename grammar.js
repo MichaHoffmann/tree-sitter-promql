@@ -138,8 +138,8 @@ module.exports = grammar({
     // misc helpers
     _quoted_string: ($) =>
       choice($._single_quoted_string, $._double_quoted_string),
-    _double_quoted_string: (_) => /"((\\")|[^"(\\")])+"/,
-    _single_quoted_string: (_) => /'((\\')|[^'(\\')])+'/,
+    _double_quoted_string: (_) => token(seq('"', /(\\"|[^"])*/, '"')),
+    _single_quoted_string: (_) => token(seq("'", /(\\'|[^'])*/, "'")),
     _duration: (_) =>
       repeat1(seq(/[0-9]+/, choice("ms", "s", "m", "h", "d", "w", "y"))),
 

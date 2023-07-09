@@ -3,7 +3,7 @@
     3,
     sum by (app, proc) (
       rate (
-        instance_cpu_time_ns{container="foo"}[5m]
+        instance_cpu_time_ns{container!~"(foo|bar).*"}[5m]
       )
     )
   )
