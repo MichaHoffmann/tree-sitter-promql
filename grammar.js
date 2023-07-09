@@ -98,7 +98,7 @@ module.exports = grammar({
         [6, choice("^")],
         [5, choice("*", "/", "%")],
         [4, choice("+", "-")],
-        [3, choice(seq("==", "!=", ">", ">=", "<", "<="), optional("bool"))],
+        [3, seq(choice("==", "!=", ">", ">=", "<", "<="), optional("bool"))],
         [2, choice("and", "or", "unless")],
         [1, choice("atan2")],
       ];

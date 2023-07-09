@@ -61,3 +61,36 @@ binary - error rate
           (range_vector_selector
             (metric_name)
             (range_selection)))))))
+
+================================================================================
+binary - precedences
+================================================================================
+
+foo - bar > baz
+
+--------------------------------------------------------------------------------
+
+(query
+  (binary_expression
+    (binary_expression
+      (instant_vector_selector
+        (metric_name))
+      (instant_vector_selector
+        (metric_name)))
+    (instant_vector_selector
+      (metric_name))))
+
+================================================================================
+binary - bool comparison
+================================================================================
+
+foo > bool baz
+
+--------------------------------------------------------------------------------
+
+(query
+  (binary_expression
+    (instant_vector_selector
+      (metric_name))
+    (instant_vector_selector
+      (metric_name))))
