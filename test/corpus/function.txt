@@ -104,3 +104,23 @@ function - no function just brackets
         (metric_name)))
     (instant_vector_selector
       (metric_name))))
+
+================================================================================
+function - brackets in string
+================================================================================
+
+rate(foo{label=~"(a|b)"}[5m])
+
+--------------------------------------------------------------------------------
+
+(query
+  (function_call
+    (function_name)
+    (function_args
+      (range_vector_selector
+        (metric_name)
+        (label_selectors
+          (label_matcher
+            (label_name)
+            (label_value)))
+        (range_selection)))))
