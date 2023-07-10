@@ -16,8 +16,8 @@ module.exports = grammar({
     _query_expression: ($) =>
       choice(
         $._literal_expression,
-        $._timeseries_selector_expression,
-        $._function_expression,
+        $._selector_expression,
+        $._call_expression,
         $._operator_expression,
         $._subquery_expression
       ),
@@ -29,8 +29,8 @@ module.exports = grammar({
       /[-+]?([0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?|0[xX][0-9a-fA-F]+|[nN][aA][nN]|[iI][nN][fF])/,
     string_literal: ($) => $._quoted_string,
 
-    // timeseries selector
-    _timeseries_selector_expression: ($) =>
+    // selectors
+    _selector_expression: ($) =>
       choice($.instant_vector_selector, $.range_vector_selector),
 
     instant_vector_selector: ($) =>
@@ -56,42 +56,23 @@ module.exports = grammar({
     label_value: ($) => $._quoted_string,
 
     // functions
-    _function_expression: ($) => $.function_call,
-    function_call: ($) => seq($.function_name, $.function_args),
+    // NOTE: we group also aggregations here; otherwise there will be ambiguities for
+    //       code like `sum(X)` in integrations like semgrep
+    _call_expression: ($) => $.function_call,
+    function_call: ($) =>
+      choice(
+        seq($.function_name, $.function_args),
+        seq($.function_name, $.grouping, $.function_args),
+        seq($.function_name, $.function_args, $.grouping)
+      ),
     function_name: ($) => $._identifier,
     function_args: ($) => seq("(", commaSep($._query), ")"),
 
-    // operators
-    _operator_expression: ($) =>
-      choice($.aggregation_expression, $.binary_expression),
-
-    aggregation_expression: ($) =>
-      seq(
-        $.aggregation_operator,
-        optional($.aggregation_grouping),
-        "(",
-        optional(seq($._literal_expression, ",")),
-        $._query,
-        ")",
-        optional($.aggregation_grouping)
-      ),
-    aggregation_operator: (_) =>
-      choice(
-        "sum",
-        "max",
-        "min",
-        "avg",
-        "group",
-        "stddev",
-        "stdvar",
-        "count",
-        "count_values",
-        "bottomk",
-        "topk",
-        "quantile"
-      ),
-    aggregation_grouping: ($) =>
+    grouping: ($) =>
       seq(choice("by", "without"), "(", commaSep($.label_name), ")"),
+
+    // operators
+    _operator_expression: ($) => $.binary_expression,
 
     binary_expression: ($) => {
       const table = [

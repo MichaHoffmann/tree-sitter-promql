@@ -1,76 +1,5 @@
 [
   {
-    "type": "aggregation_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "aggregation_expression",
-          "named": true
-        },
-        {
-          "type": "aggregation_grouping",
-          "named": true
-        },
-        {
-          "type": "aggregation_operator",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "float_literal",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "instant_vector_selector",
-          "named": true
-        },
-        {
-          "type": "range_vector_selector",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "subquery",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "aggregation_grouping",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "label_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "aggregation_operator",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "at",
     "named": true,
     "fields": {}
@@ -83,10 +12,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "aggregation_expression",
-          "named": true
-        },
         {
           "type": "binary_expression",
           "named": true
@@ -146,10 +71,6 @@
       "required": false,
       "types": [
         {
-          "type": "aggregation_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -195,6 +116,10 @@
         {
           "type": "function_name",
           "named": true
+        },
+        {
+          "type": "grouping",
+          "named": true
         }
       ]
     }
@@ -203,6 +128,21 @@
     "type": "function_name",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "grouping",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "label_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "instant_vector_selector",
@@ -309,10 +249,6 @@
       "required": false,
       "types": [
         {
-          "type": "aggregation_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -388,10 +324,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "aggregation_expression",
-          "named": true
-        },
         {
           "type": "binary_expression",
           "named": true
@@ -533,15 +465,7 @@
     "named": false
   },
   {
-    "type": "avg",
-    "named": false
-  },
-  {
     "type": "bool",
-    "named": false
-  },
-  {
-    "type": "bottomk",
     "named": false
   },
   {
@@ -551,14 +475,6 @@
   {
     "type": "comment",
     "named": true
-  },
-  {
-    "type": "count",
-    "named": false
-  },
-  {
-    "type": "count_values",
-    "named": false
   },
   {
     "type": "d",
@@ -571,10 +487,6 @@
   {
     "type": "float_literal",
     "named": true
-  },
-  {
-    "type": "group",
-    "named": false
   },
   {
     "type": "group_left",
@@ -597,14 +509,6 @@
     "named": false
   },
   {
-    "type": "max",
-    "named": false
-  },
-  {
-    "type": "min",
-    "named": false
-  },
-  {
     "type": "ms",
     "named": false
   },
@@ -621,31 +525,11 @@
     "named": false
   },
   {
-    "type": "quantile",
-    "named": false
-  },
-  {
     "type": "s",
     "named": false
   },
   {
     "type": "start()",
-    "named": false
-  },
-  {
-    "type": "stddev",
-    "named": false
-  },
-  {
-    "type": "stdvar",
-    "named": false
-  },
-  {
-    "type": "sum",
-    "named": false
-  },
-  {
-    "type": "topk",
     "named": false
   },
   {
