@@ -7,12 +7,13 @@ sum by (label) (http_requests_total)
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (aggregation_grouping
+  (function_call
+    (function_name)
+    (grouping
       (label_name))
-    (instant_vector_selector
-      (metric_name))))
+    (function_args
+      (instant_vector_selector
+        (metric_name)))))
 
 ================================================================================
 aggregation - sum without
@@ -23,12 +24,13 @@ sum without (label) (http_requests_total)
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (aggregation_grouping
+  (function_call
+    (function_name)
+    (grouping
       (label_name))
-    (instant_vector_selector
-      (metric_name))))
+    (function_args
+      (instant_vector_selector
+        (metric_name)))))
 
 ================================================================================
 aggregation - sum empty grouping
@@ -39,11 +41,12 @@ sum without () (http_requests_total)
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (aggregation_grouping)
-    (instant_vector_selector
-      (metric_name))))
+  (function_call
+    (function_name)
+    (grouping)
+    (function_args
+      (instant_vector_selector
+        (metric_name)))))
 
 ================================================================================
 aggregation - nested count
@@ -54,14 +57,16 @@ count(count by (label) (http_requests_total))
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (aggregation_expression
-      (aggregation_operator)
-      (aggregation_grouping
-        (label_name))
-      (instant_vector_selector
-        (metric_name)))))
+  (function_call
+    (function_name)
+    (function_args
+      (function_call
+        (function_name)
+        (grouping
+          (label_name))
+        (function_args
+          (instant_vector_selector
+            (metric_name)))))))
 
 ================================================================================
 aggregation - sum by trailing grouping
@@ -72,11 +77,12 @@ sum(http_requests_total) by (label)
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (instant_vector_selector
-      (metric_name))
-    (aggregation_grouping
+  (function_call
+    (function_name)
+    (function_args
+      (instant_vector_selector
+        (metric_name)))
+    (grouping
       (label_name))))
 
 ================================================================================
@@ -88,12 +94,13 @@ topk(10, http_requests_total) by (label)
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (float_literal)
-    (instant_vector_selector
-      (metric_name))
-    (aggregation_grouping
+  (function_call
+    (function_name)
+    (function_args
+      (float_literal)
+      (instant_vector_selector
+        (metric_name)))
+    (grouping
       (label_name))))
 
 ================================================================================
@@ -105,15 +112,16 @@ stddev by (foo, bar, baz) (increase(http_requests_total[1m]))
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (aggregation_grouping
+  (function_call
+    (function_name)
+    (grouping
       (label_name)
       (label_name)
       (label_name))
-    (function_call
-      (function_name)
-      (function_args
-        (range_vector_selector
-          (metric_name)
-          (range_selection))))))
+    (function_args
+      (function_call
+        (function_name)
+        (function_args
+          (range_vector_selector
+            (metric_name)
+            (range_selection)))))))

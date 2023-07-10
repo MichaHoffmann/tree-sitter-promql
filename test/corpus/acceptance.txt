@@ -11,16 +11,17 @@ sum by (app, proc) (
 (query
   (binary_expression
     (binary_expression
-      (aggregation_expression
-        (aggregation_operator)
-        (aggregation_grouping
+      (function_call
+        (function_name)
+        (grouping
           (label_name)
           (label_name))
-        (binary_expression
-          (instant_vector_selector
-            (metric_name))
-          (instant_vector_selector
-            (metric_name))))
+        (function_args
+          (binary_expression
+            (instant_vector_selector
+              (metric_name))
+            (instant_vector_selector
+              (metric_name)))))
       (float_literal))
     (float_literal)))
 
@@ -33,20 +34,22 @@ topk(3, sum by (app, proc) (rate(instance_cpu_time_ns[5m])))
 --------------------------------------------------------------------------------
 
 (query
-  (aggregation_expression
-    (aggregation_operator)
-    (float_literal)
-    (aggregation_expression
-      (aggregation_operator)
-      (aggregation_grouping
-        (label_name)
-        (label_name))
+  (function_call
+    (function_name)
+    (function_args
+      (float_literal)
       (function_call
         (function_name)
+        (grouping
+          (label_name)
+          (label_name))
         (function_args
-          (range_vector_selector
-            (metric_name)
-            (range_selection)))))))
+          (function_call
+            (function_name)
+            (function_args
+              (range_vector_selector
+                (metric_name)
+                (range_selection)))))))))
 
 ================================================================================
 misc - 1
@@ -104,24 +107,26 @@ stddev by
 (query
   (binary_expression
     (binary_expression
-      (aggregation_expression
-        (aggregation_operator)
-        (aggregation_grouping
+      (function_call
+        (function_name)
+        (grouping
           (label_name))
-        (function_call
-          (function_name)
-          (function_args
-            (range_vector_selector
-              (metric_name)
-              (range_selection)))))
-      (aggregation_expression
-        (aggregation_operator)
-        (aggregation_grouping
+        (function_args
+          (function_call
+            (function_name)
+            (function_args
+              (range_vector_selector
+                (metric_name)
+                (range_selection))))))
+      (function_call
+        (function_name)
+        (grouping
           (label_name))
-        (function_call
-          (function_name)
-          (function_args
-            (range_vector_selector
-              (metric_name)
-              (range_selection))))))
+        (function_args
+          (function_call
+            (function_name)
+            (function_args
+              (range_vector_selector
+                (metric_name)
+                (range_selection)))))))
     (float_literal)))

@@ -40,11 +40,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_timeseries_selector_expression"
+          "name": "_selector_expression"
         },
         {
           "type": "SYMBOL",
-          "name": "_function_expression"
+          "name": "_call_expression"
         },
         {
           "type": "SYMBOL",
@@ -77,7 +77,7 @@
       "type": "SYMBOL",
       "name": "_quoted_string"
     },
-    "_timeseries_selector_expression": {
+    "_selector_expression": {
       "type": "CHOICE",
       "members": [
         {
@@ -376,20 +376,59 @@
       "type": "SYMBOL",
       "name": "_quoted_string"
     },
-    "_function_expression": {
+    "_call_expression": {
       "type": "SYMBOL",
       "name": "function_call"
     },
     "function_call": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "function_name"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_args"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "function_args"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "grouping"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_args"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_args"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "grouping"
+            }
+          ]
         }
       ]
     },
@@ -455,139 +494,7 @@
         }
       ]
     },
-    "_operator_expression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "aggregation_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "binary_expression"
-        }
-      ]
-    },
-    "aggregation_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "aggregation_operator"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "aggregation_grouping"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_literal_expression"
-                },
-                {
-                  "type": "STRING",
-                  "value": ","
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_query"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "aggregation_grouping"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "aggregation_operator": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "sum"
-        },
-        {
-          "type": "STRING",
-          "value": "max"
-        },
-        {
-          "type": "STRING",
-          "value": "min"
-        },
-        {
-          "type": "STRING",
-          "value": "avg"
-        },
-        {
-          "type": "STRING",
-          "value": "group"
-        },
-        {
-          "type": "STRING",
-          "value": "stddev"
-        },
-        {
-          "type": "STRING",
-          "value": "stdvar"
-        },
-        {
-          "type": "STRING",
-          "value": "count"
-        },
-        {
-          "type": "STRING",
-          "value": "count_values"
-        },
-        {
-          "type": "STRING",
-          "value": "bottomk"
-        },
-        {
-          "type": "STRING",
-          "value": "topk"
-        },
-        {
-          "type": "STRING",
-          "value": "quantile"
-        }
-      ]
-    },
-    "aggregation_grouping": {
+    "grouping": {
       "type": "SEQ",
       "members": [
         {
@@ -657,6 +564,10 @@
           "value": ")"
         }
       ]
+    },
+    "_operator_expression": {
+      "type": "SYMBOL",
+      "name": "binary_expression"
     },
     "binary_expression": {
       "type": "CHOICE",
