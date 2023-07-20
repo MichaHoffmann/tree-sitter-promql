@@ -1,0 +1,1 @@
+              (          predict_linear(prometheus_notifications_queue_length{job="release-name-kube-promethe-prometheus",namespace="default"}[5m], 60 * 30)        >          min_over_time(prometheus_notifications_queue_capacity{job="release-name-kube-promethe-prometheus",namespace="default"}[5m])        )

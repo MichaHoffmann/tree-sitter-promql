@@ -1,0 +1,1 @@
+      changes(node_network_up{job="node-exporter",device!~"veth.+"}[2m]) > 2

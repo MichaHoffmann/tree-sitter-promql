@@ -1,0 +1,1 @@
+      absent(up{job="kubelet", metrics_path="/metrics"} == 1)

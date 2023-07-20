@@ -1,0 +1,1 @@
+            count without (cpu, mode) (          node_cpu_seconds_total{job="node-exporter",mode="idle"}        )

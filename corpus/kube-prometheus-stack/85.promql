@@ -1,0 +1,1 @@
+    sum(rate(node_network_transmit_bytes_total[3m])) BY (instance)

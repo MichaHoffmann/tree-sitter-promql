@@ -1,0 +1,1 @@
+max_over_time(prometheus_config_last_reload_successful{job="release-name-kube-promethe-prometheus",namespace="default"}[5m]) == 0

@@ -1,0 +1,1 @@
+      kube_job_failed{job="kube-state-metrics", namespace=~".*"}  > 0

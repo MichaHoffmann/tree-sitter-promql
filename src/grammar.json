@@ -252,21 +252,26 @@
       ]
     },
     "_series_matcher": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
           "name": "metric_name"
         },
         {
-          "type": "CHOICE",
+          "type": "SYMBOL",
+          "name": "label_selectors"
+        },
+        {
+          "type": "SEQ",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "label_selectors"
+              "name": "metric_name"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "label_selectors"
             }
           ]
         }
@@ -501,12 +506,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "by"
+              "type": "PATTERN",
+              "value": "[bB][yY]"
             },
             {
-              "type": "STRING",
-              "value": "without"
+              "type": "PATTERN",
+              "value": "[wW][iI][tT][hH][oO][uU][tT]"
             }
           ]
         },
@@ -744,8 +749,8 @@
                     "type": "CHOICE",
                     "members": [
                       {
-                        "type": "STRING",
-                        "value": "bool"
+                        "type": "PATTERN",
+                        "value": "[bB][oO][oO][lL]"
                       },
                       {
                         "type": "BLANK"
@@ -787,16 +792,16 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "and"
+                    "type": "PATTERN",
+                    "value": "[aA][nN][dD]"
                   },
                   {
-                    "type": "STRING",
-                    "value": "or"
+                    "type": "PATTERN",
+                    "value": "[oO][rR]"
                   },
                   {
-                    "type": "STRING",
-                    "value": "unless"
+                    "type": "PATTERN",
+                    "value": "[uU][nN][lL][eE][sS][sS]"
                   }
                 ]
               },
@@ -833,8 +838,8 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "atan2"
+                    "type": "PATTERN",
+                    "value": "[aA][tT][aA][nN]2"
                   }
                 ]
               },
@@ -869,12 +874,12 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
-                "value": "on"
+                "type": "PATTERN",
+                "value": "[oO][nN]"
               },
               {
-                "type": "STRING",
-                "value": "ignoring"
+                "type": "PATTERN",
+                "value": "[iI][gG][nN][oO][rR][iI][nN][gG]"
               }
             ]
           },
@@ -946,12 +951,12 @@
                     "type": "CHOICE",
                     "members": [
                       {
-                        "type": "STRING",
-                        "value": "group_left"
+                        "type": "PATTERN",
+                        "value": "[gG][rR][oO][uU][pP]_[lL][eE][fF][tT]"
                       },
                       {
-                        "type": "STRING",
-                        "value": "group_right"
+                        "type": "PATTERN",
+                        "value": "[gG][rR][oO][uU][pP]_[rR][iI][gG][hH][tT]"
                       }
                     ]
                   },
@@ -1103,6 +1108,10 @@
         {
           "type": "SYMBOL",
           "name": "_double_quoted_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_backtick_quoted_string"
         }
       ]
     },
@@ -1142,6 +1151,26 @@
           {
             "type": "STRING",
             "value": "'"
+          }
+        ]
+      }
+    },
+    "_backtick_quoted_string": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "`"
+          },
+          {
+            "type": "PATTERN",
+            "value": "(\\\\`|[^`])*"
+          },
+          {
+            "type": "STRING",
+            "value": "`"
           }
         ]
       }

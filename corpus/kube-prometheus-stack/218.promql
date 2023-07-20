@@ -1,0 +1,1 @@
+      avg_over_time(prometheus_engine_queries{job="release-name-kube-promethe-prometheus",namespace="default"}[5m]) / max_over_time(prometheus_engine_queries_concurrent_max{job="release-name-kube-promethe-prometheus",namespace="default"}[5m]) > 0.8

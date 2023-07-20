@@ -1,0 +1,1 @@
+      max_over_time(reloader_last_reload_successful{namespace=~".+"}[5m]) == 0

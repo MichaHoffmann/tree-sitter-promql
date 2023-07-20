@@ -1,0 +1,1 @@
+              (          kube_deployment_spec_replicas{job="kube-state-metrics", namespace=~".*"}            >          kube_deployment_status_replicas_available{job="kube-state-metrics", namespace=~".*"}        ) and (          changes(kube_deployment_status_replicas_updated{job="kube-state-metrics", namespace=~".*"}[10m])            ==          0        )

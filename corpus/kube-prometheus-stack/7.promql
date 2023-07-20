@@ -1,0 +1,1 @@
+              (          count by (namespace,service,cluster) (            avg_over_time(up{job="release-name-kube-promethe-alertmanager",namespace="default"}[5m]) < 0.5          )        /          count by (namespace,service,cluster) (            up{job="release-name-kube-promethe-alertmanager",namespace="default"}          )        )        >= 0.5

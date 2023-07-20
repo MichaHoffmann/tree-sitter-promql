@@ -1,0 +1,1 @@
+              sum(min without(resource) (kube_resourcequota{job="kube-state-metrics", type="hard", resource=~"(cpu|requests.cpu)"})) by (cluster)          /        sum(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"}) by (cluster)          > 1.5

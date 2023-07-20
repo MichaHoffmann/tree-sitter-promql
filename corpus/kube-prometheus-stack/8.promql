@@ -1,0 +1,1 @@
+              (          count by (namespace,service,cluster) (            changes(process_start_time_seconds{job="release-name-kube-promethe-alertmanager",namespace="default"}[10m]) > 4          )        /          count by (namespace,service,cluster) (            up{job="release-name-kube-promethe-alertmanager",namespace="default"}          )        )        >= 0.5

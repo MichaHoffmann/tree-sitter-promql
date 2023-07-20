@@ -1,0 +1,1 @@
+              2^max(kube_state_metrics_total_shards{job="kube-state-metrics"}) by (cluster) - 1          -        sum( 2 ^ max by (cluster, shard_ordinal) (kube_state_metrics_shard_ordinal{job="kube-state-metrics"}) ) by (cluster)        != 0

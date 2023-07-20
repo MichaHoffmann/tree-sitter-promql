@@ -1,0 +1,1 @@
+    rate(node_vmstat_pgmajfault{job="node-exporter"}[5m])
