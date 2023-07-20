@@ -1,0 +1,1 @@
+              (          kube_statefulset_status_replicas_ready{job="kube-state-metrics", namespace=~".*"}            !=          kube_statefulset_status_replicas{job="kube-state-metrics", namespace=~".*"}        ) and (          changes(kube_statefulset_status_replicas_updated{job="kube-state-metrics", namespace=~".*"}[10m])            ==          0        )

@@ -1,0 +1,1 @@
+              (          node_filesystem_files_free{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 3        and          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0        )

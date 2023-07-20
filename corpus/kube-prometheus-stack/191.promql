@@ -1,0 +1,1 @@
+            avg by (cluster) (          node:node_cpu_utilization:ratio_rate5m        )

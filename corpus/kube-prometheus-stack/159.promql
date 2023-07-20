@@ -1,0 +1,1 @@
+            (          node_load1{job="node-exporter"}        /          instance:node_num_cpu:sum{job="node-exporter"}        )

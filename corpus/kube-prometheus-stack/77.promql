@@ -1,0 +1,1 @@
+              sum(apiserver_request:burnrate1h) > (14.40 * 0.01000)        and        sum(apiserver_request:burnrate5m) > (14.40 * 0.01000)

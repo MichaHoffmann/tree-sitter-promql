@@ -1,0 +1,1 @@
+            sum without (device) (          rate(node_network_receive_bytes_total{job="node-exporter", device!="lo"}[5m])        )

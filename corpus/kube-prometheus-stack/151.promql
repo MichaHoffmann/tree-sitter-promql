@@ -1,0 +1,1 @@
+      increase(kubelet_certificate_manager_client_expiration_renew_errors[5m]) > 0

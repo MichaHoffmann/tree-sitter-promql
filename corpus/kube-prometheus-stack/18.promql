@@ -1,0 +1,1 @@
+      rate(etcd_server_proposals_failed_total{job=~".*etcd.*"}[15m]) > 5

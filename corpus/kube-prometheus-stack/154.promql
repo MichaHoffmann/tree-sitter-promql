@@ -1,0 +1,1 @@
+      absent(up{job="kube-scheduler"} == 1)

@@ -1,0 +1,1 @@
+      increase(prometheus_rule_group_iterations_missed_total{job="release-name-kube-promethe-prometheus",namespace="default"}[5m]) > 0

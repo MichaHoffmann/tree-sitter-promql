@@ -1,0 +1,1 @@
+              count by (namespace,service,cluster) (          count_values by (namespace,service,cluster) ("config_hash", alertmanager_config_hash{job="release-name-kube-promethe-alertmanager",namespace="default"})        )        != 1

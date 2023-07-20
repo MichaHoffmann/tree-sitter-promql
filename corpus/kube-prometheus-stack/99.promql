@@ -1,0 +1,1 @@
+              (sum(rate(kube_state_metrics_watch_total{job="kube-state-metrics",result="error"}[5m])) by (cluster)          /        sum(rate(kube_state_metrics_watch_total{job="kube-state-metrics"}[5m])) by (cluster))        > 0.01

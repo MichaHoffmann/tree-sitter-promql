@@ -457,22 +457,6 @@
     "named": false
   },
   {
-    "type": "and",
-    "named": false
-  },
-  {
-    "type": "atan2",
-    "named": false
-  },
-  {
-    "type": "bool",
-    "named": false
-  },
-  {
-    "type": "by",
-    "named": false
-  },
-  {
     "type": "comment",
     "named": true
   },
@@ -489,19 +473,7 @@
     "named": true
   },
   {
-    "type": "group_left",
-    "named": false
-  },
-  {
-    "type": "group_right",
-    "named": false
-  },
-  {
     "type": "h",
-    "named": false
-  },
-  {
-    "type": "ignoring",
     "named": false
   },
   {
@@ -517,14 +489,6 @@
     "named": false
   },
   {
-    "type": "on",
-    "named": false
-  },
-  {
-    "type": "or",
-    "named": false
-  },
-  {
     "type": "s",
     "named": false
   },
@@ -533,15 +497,7 @@
     "named": false
   },
   {
-    "type": "unless",
-    "named": false
-  },
-  {
     "type": "w",
-    "named": false
-  },
-  {
-    "type": "without",
     "named": false
   },
   {

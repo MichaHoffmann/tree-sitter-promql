@@ -1,0 +1,1 @@
+      sum by(name, namespace, cluster)(increase(aggregator_unavailable_apiservice_total[10m])) > 4

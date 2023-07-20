@@ -1,0 +1,1 @@
+              kube_deployment_status_observed_generation{job="kube-state-metrics", namespace=~".*"}          !=        kube_deployment_metadata_generation{job="kube-state-metrics", namespace=~".*"}

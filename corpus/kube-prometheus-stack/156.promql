@@ -1,0 +1,1 @@
+              (sum(rate(rest_client_requests_total{job="apiserver",code=~"5.."}[5m])) by (cluster, instance, job, namespace)          /        sum(rate(rest_client_requests_total{job="apiserver"}[5m])) by (cluster, instance, job, namespace))        > 0.01

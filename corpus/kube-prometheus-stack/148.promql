@@ -1,0 +1,1 @@
+      kubelet_certificate_manager_client_ttl_seconds < 86400

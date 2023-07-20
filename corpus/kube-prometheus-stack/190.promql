@@ -1,0 +1,1 @@
+            avg by (cluster, node) (          sum without (mode) (            rate(node_cpu_seconds_total{mode!="idle",mode!="iowait",mode!="steal",job="node-exporter"}[5m])          )        )

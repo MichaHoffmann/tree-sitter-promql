@@ -1,0 +1,1 @@
+max_over_time(alertmanager_cluster_members{job="release-name-kube-promethe-alertmanager",namespace="default"}[5m])        < on (namespace,service,cluster) group_left          count by (namespace,service,cluster) (max_over_time(alertmanager_cluster_members{job="release-name-kube-promethe-alertmanager",namespace="default"}[5m]))

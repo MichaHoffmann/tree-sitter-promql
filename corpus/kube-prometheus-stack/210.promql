@@ -1,0 +1,1 @@
+(          max_over_time(prometheus_remote_storage_shards_desired{job="release-name-kube-promethe-prometheus",namespace="default"}[5m])        >          max_over_time(prometheus_remote_storage_shards_max{job="release-name-kube-promethe-prometheus",namespace="default"}[5m])        )

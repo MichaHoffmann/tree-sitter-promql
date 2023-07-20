@@ -19,7 +19,7 @@ module.exports = grammar({
         $._selector_expression,
         $._call_expression,
         $._operator_expression,
-        $._subquery_expression
+        $._subquery_expression,
       ),
 
     // literals
@@ -45,7 +45,12 @@ module.exports = grammar({
     offset: ($) => seq("offset", optional("-"), $._duration),
     at: (_) => seq("@", choice("start()", "end()", /[1-9][0-9]*/)),
 
-    _series_matcher: ($) => seq($.metric_name, optional($.label_selectors)),
+    _series_matcher: ($) =>
+      choice(
+        $.metric_name,
+        $.label_selectors,
+        seq($.metric_name, $.label_selectors),
+      ),
 
     label_selectors: ($) => seq("{", commaSep($.label_matcher), "}"),
     label_matcher: ($) =>
@@ -63,13 +68,18 @@ module.exports = grammar({
       choice(
         seq($.function_name, $.function_args),
         seq($.function_name, $.grouping, $.function_args),
-        seq($.function_name, $.function_args, $.grouping)
+        seq($.function_name, $.function_args, $.grouping),
       ),
     function_name: ($) => $._identifier,
     function_args: ($) => seq("(", commaSep($._query), ")"),
 
     grouping: ($) =>
-      seq(choice("by", "without"), "(", commaSep($.label_name), ")"),
+      seq(
+        choice(caseInsensitive("by"), caseInsensitive("without")),
+        "(",
+        commaSep($.label_name),
+        ")",
+      ),
 
     // operators
     _operator_expression: ($) => $.binary_expression,
@@ -79,33 +89,49 @@ module.exports = grammar({
         [6, choice("^")],
         [5, choice("*", "/", "%")],
         [4, choice("+", "-")],
-        [3, seq(choice("==", "!=", ">", ">=", "<", "<="), optional("bool"))],
-        [2, choice("and", "or", "unless")],
-        [1, choice("atan2")],
+        [
+          3,
+          seq(
+            choice("==", "!=", ">", ">=", "<", "<="),
+            optional(caseInsensitive("bool")),
+          ),
+        ],
+        [
+          2,
+          choice(
+            caseInsensitive("and"),
+            caseInsensitive("or"),
+            caseInsensitive("unless"),
+          ),
+        ],
+        [1, choice(caseInsensitive("atan2"))],
       ];
 
       return choice(
         ...table.map(([precedence, operator]) =>
           prec.left(
             precedence,
-            seq($._query, operator, optional($.binary_grouping), $._query)
-          )
-        )
+            seq($._query, operator, optional($.binary_grouping), $._query),
+          ),
+        ),
       );
     },
 
     binary_grouping: ($) =>
       prec.right(
         seq(
-          choice("on", "ignoring"),
+          choice(caseInsensitive("on"), caseInsensitive("ignoring")),
           seq("(", commaSep($.label_name), ")"),
           optional(
             seq(
-              choice("group_left", "group_right"),
-              optional(seq("(", commaSep($.label_name), ")"))
-            )
-          )
-        )
+              choice(
+                caseInsensitive("group_left"),
+                caseInsensitive("group_right"),
+              ),
+              optional(seq("(", commaSep($.label_name), ")")),
+            ),
+          ),
+        ),
       ),
 
     // subqueries
@@ -118,9 +144,14 @@ module.exports = grammar({
 
     // misc helpers
     _quoted_string: ($) =>
-      choice($._single_quoted_string, $._double_quoted_string),
+      choice(
+        $._single_quoted_string,
+        $._double_quoted_string,
+        $._backtick_quoted_string,
+      ),
     _double_quoted_string: (_) => token(seq('"', /(\\"|[^"])*/, '"')),
     _single_quoted_string: (_) => token(seq("'", /(\\'|[^'])*/, "'")),
+    _backtick_quoted_string: (_) => token(seq("`", /(\\`|[^`])*/, "`")),
     _duration: (_) =>
       repeat1(seq(/[0-9]+/, choice("ms", "s", "m", "h", "d", "w", "y"))),
 
@@ -137,4 +168,15 @@ function commaSep(rule) {
 
 function commaSep1(rule) {
   return seq(rule, repeat(seq(",", rule)), optional(","));
+}
+
+// taken from https://github.com/stadelmanma/tree-sitter-fortran/blob/a9c79b20a84075467d705ebe714c90f275dd5835/grammar.js#L1125C1-L1133C2
+function caseInsensitive(keyword) {
+  let result = new RegExp(
+    keyword
+      .split("")
+      .map((l) => (l !== l.toUpperCase() ? `[${l}${l.toUpperCase()}]` : l))
+      .join(""),
+  );
+  return result;
 }

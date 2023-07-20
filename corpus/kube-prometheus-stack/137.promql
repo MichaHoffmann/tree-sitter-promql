@@ -1,0 +1,1 @@
+      absent(up{job="apiserver"} == 1)

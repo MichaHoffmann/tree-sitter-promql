@@ -1,0 +1,1 @@
+      rate(prometheus_target_scrapes_sample_out_of_order_total{job="release-name-kube-promethe-prometheus",namespace="default"}[5m]) > 0

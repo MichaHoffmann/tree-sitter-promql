@@ -1,0 +1,1 @@
+      min by (cluster,controller,namespace) (max_over_time(prometheus_operator_ready{job="release-name-kube-promethe-operator",namespace="default"}[5m]) == 0)

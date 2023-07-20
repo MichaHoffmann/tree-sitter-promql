@@ -1,0 +1,1 @@
+      sum by (namespace, pod, container, cluster) (kube_pod_container_status_waiting_reason{job="kube-state-metrics", namespace=~".*"}) > 0

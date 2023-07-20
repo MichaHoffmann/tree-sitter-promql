@@ -1,0 +1,1 @@
+              (          node_filefd_allocated{job="node-exporter"} * 100 / node_filefd_maximum{job="node-exporter"} > 70        )

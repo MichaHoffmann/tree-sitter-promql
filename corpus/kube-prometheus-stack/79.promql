@@ -1,0 +1,1 @@
+              sum(apiserver_request:burnrate1d) > (3.00 * 0.01000)        and        sum(apiserver_request:burnrate2h) > (3.00 * 0.01000)

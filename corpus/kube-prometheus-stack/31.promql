@@ -1,0 +1,1 @@
+            container_memory_cache{job="kubelet", metrics_path="/metrics/cadvisor", image!=""}        * on (cluster, namespace, pod) group_left(node) topk by(cluster, namespace, pod) (1,          max by(cluster, namespace, pod, node) (kube_pod_info{node!=""})        )
