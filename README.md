@@ -15,7 +15,7 @@ To run tests simply run `nix-shell --run 'tree-sitter test'`.
 The directory `corpus` contains a corpus of PromQL queries from the internet.
 
 ```bash
-nix-shell -run 'tree-sitter parse --quiet --stat corpus/*/*'
+nix-shell -run 'tree-sitter parse --quiet --stat example/real_world/*/*.promql'
 
 Total parses: 219; successful parses: 219; failed parses: 0; success percentage: 100.00%
 ```

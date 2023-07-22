@@ -23,4 +23,4 @@ jobs:
     - uses: dx-oss/nix-shell-action@v11
       with:
         file: shell.nix
-        script: tree-sitter parse --quiet --stat corpus/*/*.promql
+        script: tree-sitter parse --quiet --stat example/real_world/*/*.promql
