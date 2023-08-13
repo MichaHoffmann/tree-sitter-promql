@@ -806,7 +806,6 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
 
 static bool ts_lex(TSLexer *lexer, TSStateId state) {
   START_LEXER();
-  eof = lexer->eof(lexer);
   switch (state) {
     case 0:
       if (eof) ADVANCE(85);
@@ -854,9 +853,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 'i') ADVANCE(45);
       if (lookahead == 'U' ||
           lookahead == 'u') ADVANCE(57);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(0)
       if (('1' <= lookahead && lookahead <= '9')) ADVANCE(102);
       END_STATE();
@@ -878,9 +875,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 'i') ADVANCE(167);
       if (lookahead == 'N' ||
           lookahead == 'n') ADVANCE(155);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(1)
       if (('1' <= lookahead && lookahead <= '9')) ADVANCE(90);
       if (lookahead == ':' ||
@@ -906,9 +901,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 'n') ADVANCE(155);
       if (lookahead == 'O' ||
           lookahead == 'o') ADVANCE(169);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(2)
       if (('1' <= lookahead && lookahead <= '9')) ADVANCE(90);
       if (lookahead == ':' ||
@@ -932,9 +925,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 'i') ADVANCE(167);
       if (lookahead == 'N' ||
           lookahead == 'n') ADVANCE(155);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(3)
       if (('1' <= lookahead && lookahead <= '9')) ADVANCE(90);
       if (lookahead == ':' ||
@@ -958,9 +949,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 'n') ADVANCE(155);
       if (lookahead == 'O' ||
           lookahead == 'o') ADVANCE(169);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(4)
       if (('1' <= lookahead && lookahead <= '9')) ADVANCE(90);
       if (lookahead == ':' ||
@@ -981,9 +970,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '#') ADVANCE(183);
       if (lookahead == ')') ADVANCE(87);
       if (lookahead == '}') ADVANCE(105);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(7)
       if (lookahead == ':' ||
           ('A' <= lookahead && lookahead <= 'Z') ||
@@ -998,18 +985,14 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == 's') ADVANCE(146);
       if (lookahead == 'w') ADVANCE(151);
       if (lookahead == 'y') ADVANCE(153);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(8)
       END_STATE();
     case 9:
       if (lookahead == '#') ADVANCE(183);
       if (lookahead == 'e') ADVANCE(30);
       if (lookahead == 's') ADVANCE(33);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(9)
       if (('1' <= lookahead && lookahead <= '9')) ADVANCE(102);
       END_STATE();
@@ -1343,9 +1326,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == 'u') ADVANCE(57);
       if (lookahead == 'W' ||
           lookahead == 'w') ADVANCE(49);
-      if (lookahead == '\t' ||
-          lookahead == '\n' ||
-          lookahead == '\r' ||
+      if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(84)
       if (('0' <= lookahead && lookahead <= '9')) ADVANCE(144);
       END_STATE();
