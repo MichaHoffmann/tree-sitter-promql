@@ -3,7 +3,6 @@ module.exports = grammar({
 
   extras: ($) => [$.comment, /\s/],
   conflicts: ($) => [
-    [$.metric_name, $.function_name],
     [$.instant_vector_selector, $.range_vector_selector],
   ],
 
@@ -75,7 +74,7 @@ module.exports = grammar({
 
     grouping: ($) =>
       seq(
-        choice(caseInsensitive("by"), caseInsensitive("without")),
+        choice(/by/i, /without/i),
         "(",
         commaSep($.label_name),
         ")",
@@ -93,18 +92,18 @@ module.exports = grammar({
           3,
           seq(
             choice("==", "!=", ">", ">=", "<", "<="),
-            optional(caseInsensitive("bool")),
+            optional(/bool/i),
           ),
         ],
         [
           2,
           choice(
-            caseInsensitive("and"),
-            caseInsensitive("or"),
-            caseInsensitive("unless"),
+            /and/i,
+            /or/i,
+            /unless/i,
           ),
         ],
-        [1, choice(caseInsensitive("atan2"))],
+        [1, /atan2/i],
       ];
 
       return choice(
@@ -120,13 +119,13 @@ module.exports = grammar({
     binary_grouping: ($) =>
       prec.right(
         seq(
-          choice(caseInsensitive("on"), caseInsensitive("ignoring")),
+          choice(/on/i, /ignoring/i),
           seq("(", commaSep($.label_name), ")"),
           optional(
             seq(
               choice(
-                caseInsensitive("group_left"),
-                caseInsensitive("group_right"),
+                /group_left/i,
+                /group_right/i,
               ),
               optional(seq("(", commaSep($.label_name), ")")),
             ),
@@ -168,15 +167,4 @@ function commaSep(rule) {
 
 function commaSep1(rule) {
   return seq(rule, repeat(seq(",", rule)), optional(","));
-}
-
-// taken from https://github.com/stadelmanma/tree-sitter-fortran/blob/a9c79b20a84075467d705ebe714c90f275dd5835/grammar.js#L1125C1-L1133C2
-function caseInsensitive(keyword) {
-  let result = new RegExp(
-    keyword
-      .split("")
-      .map((l) => (l !== l.toUpperCase() ? `[${l}${l.toUpperCase()}]` : l))
-      .join(""),
-  );
-  return result;
 }
